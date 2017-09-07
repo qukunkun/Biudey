@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = '地虎';
+$this->title = '地盘';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -89,13 +89,5 @@ $this->title = '地虎';
         </div>
     </div>
 
-<script type="text/javascript">
-//    $('#carousel_msg').css('display','none');
-    $('#carousel_button').click(function(){
-        $('#carousel_msg').toggle(500);
-    })
-
-
-</script>
 
 

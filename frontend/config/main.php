@@ -53,23 +53,23 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.html',
+//            'suffix' => '.html',
             'rules' => [
             ],
         ],
         
         //禁用加载自带的 jquery 和 bootstrap.css 文件
-        'assetManager'=>[
-           'bundles'=>[
-               'yii\bootstrap\BootstrapAsset' => [
-                   'css' => []
-               ],
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
-                    'js' => []
-                ],
-           ],
-       ]
+//        'assetManager'=>[
+//           'bundles'=>[
+//               'yii\bootstrap\BootstrapAsset' => [
+//                   'css' => []
+//               ],
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,
+//                    'js' => []
+//                ],
+//           ],
+//       ]
 
     ],
     'params' => $params,

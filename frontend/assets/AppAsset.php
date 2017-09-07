@@ -15,13 +15,13 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'statics/css/site.css',
-        'statics/css/bootstrap.css',
+        'statics/css/bootstrap-select.css',
 
-       // 'statics/css/nifty.css',
+//        'statics/css/nifty.css',
 
     ];
     public $js = [
-
+        'statics/js/bootstrap-select.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
