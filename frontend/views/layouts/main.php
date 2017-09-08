@@ -33,13 +33,19 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    //菜单
     $menuItemsLeft = [
         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
         ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
         ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
-        ['label' => '地盘', 'url' => ['/site/dipan']],
+        ['label' => '展览馆', 'url' => ['/site/hall']],
         ['label' => '地图', 'url' => ['/dihu/map']],
     ];
+    //登录后补充菜单
+    if( isset(Yii::$app->user->identity->id) && !empty(Yii::$app->user->identity->id) ){
+        array_push($menuItemsLeft,['label' => '我的地盘', 'url' => ['/site/dipan']]);
+    }
+
     if (Yii::$app->user->isGuest) {
         $menuItemsRight[] = ['label' => Yii::t('common','Signup'), 'url' => ['/site/signup']];
         $menuItemsRight[] = ['label' => Yii::t('common','Login'), 'url' => ['/site/login']];
@@ -47,7 +53,7 @@ AppAsset::register($this);
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '退出 (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -62,12 +68,12 @@ AppAsset::register($this);
         'items' => $menuItemsLeft,
     ]);
 
-   // echo Nav::widget([
-   //     'options' => ['class' => 'navbar-nav navbar-right'],
-   //     'items' => [
-   //         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
-   //     ],
-   // ]);
+//    echo Nav::widget([
+//        'options' => ['class' => 'navbar-nav navbar-right'],
+//        'items' => [
+//            ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
+//        ],
+//    ]);
 
     NavBar::end();
     ?>

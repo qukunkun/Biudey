@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use frontend\models\Y;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -26,7 +27,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'dipan'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -34,7 +35,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','dipan'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -211,6 +212,16 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * 展览馆
+     */
+    public function actionHall(){
+        return $this->render('hall');
+    }
+
+    /**
+     * 我的地盘
+     */
     public function actionDipan(){
         return $this->render('dipan');
     }
