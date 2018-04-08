@@ -73,4 +73,10 @@ return [
 
     ],
     'params' => $params,
+
+    //打开调试工具栏
+    'bootstrap' => ['debug'],
+    'modules' => [
+        'debug' => 'yii\debug\Module',
+    ]
 ];

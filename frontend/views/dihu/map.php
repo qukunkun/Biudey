@@ -19,7 +19,7 @@ $this->title = '地图';
             <div class="col-lg-3"><label>省</label></div>
             <div class="col-lg-9">
                 <select class="selectpicker show-tick form-control" name="Province" id="Province" data-live-search="true">
-                    <option>==请选择==</option>
+                    <option value="">==请选择==</option>
                 </select>
             </div>
         </div>
@@ -28,7 +28,7 @@ $this->title = '地图';
             <div class="col-lg-3"><label>市</label></div>
             <div class="col-lg-9">
                 <select class="selectpicker show-tick form-control" name="City" id="City" data-live-search="true">
-                    <option>==请选择==</option>
+                    <option value="">==请选择==</option>
                 </select>
             </div>
         </div>
@@ -37,7 +37,7 @@ $this->title = '地图';
             <div class="col-lg-3"><label>县/区</label></div>
             <div class="col-lg-9">
                 <select class="selectpicker form-control" multiple data-live-search="true"  name="Village" id="Village"   data-actions-box="true" data-live-search="true">
-                    <option>==请选择==</option>
+                    <option value="">==请选择==</option>
                 </select>
             </div>
         </div>
@@ -91,7 +91,7 @@ $this->title = '地图';
     function ProviceBind() {
         //清空下拉数据
         $("#Province").html("");
-        var str = "<option>==请选择==</option>";
+        var str = "<option value=''>==请选择==</option>";
         $.ajax({
             type: "POST",
             url: "/dihu/getaddress",
@@ -118,7 +118,7 @@ $this->title = '地图';
             return;
         }
         $("#City").html("");
-        var str = "<option>==请选择==</option>";
+        var str = "<option value=''>==请选择==</option>";
         $.ajax({
             type: "POST",
             url: "/dihu/getaddress",
@@ -145,7 +145,7 @@ $this->title = '地图';
             return;
         }
         $("#Village").html("");
-        var str = "<option>==请选择==</option>";
+        var str = "<option value=''>==请选择==</option>";
         //将市的ID拿到数据库进行查询，查询出他的下级进行绑定
         $.ajax({
             type: "POST",

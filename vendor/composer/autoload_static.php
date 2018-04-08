@@ -33,6 +33,10 @@ class ComposerStaticInitd507f4fb33ba01daeb3c05f433b05715
         array (
             'mdm\\admin\\' => 10,
         ),
+        'k' => 
+        array (
+            'kartik\\plugins\\fileinput\\' => 25,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -117,6 +121,10 @@ class ComposerStaticInitd507f4fb33ba01daeb3c05f433b05715
         'mdm\\admin\\' => 
         array (
             0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
+        ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
         ),
         'cebe\\markdown\\' => 
         array (

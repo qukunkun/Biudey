@@ -15,17 +15,21 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'statics/css/site.css',
-        'statics/css/bootstrap-select.css',
+        'statics/css/bootstrap-select.css',   //下拉选择框
+        'statics/css/bootstrapValidator.css', //表单自动验证
 
 //        'statics/css/nifty.css',
+        'statics/css/layui.css',
 
     ];
     public $js = [
-        'statics/js/bootstrap-select.js',
+        'statics/js/bootstrap-select.js',  //下拉选择框
+        'statics/js/bootstrapValidator.js',//表单自动验证
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'backend\assets\FontAwesomeAsset'
+        'backend\assets\FontAwesomeAsset',
+        'frontend\assets\FileInput',
     ];
 }

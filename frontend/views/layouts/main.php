@@ -34,6 +34,7 @@ AppAsset::register($this);
         ],
     ]);
     //菜单
+
     $menuItemsLeft = [
         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
         ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
@@ -43,7 +44,11 @@ AppAsset::register($this);
     ];
     //登录后补充菜单
     if( isset(Yii::$app->user->identity->id) && !empty(Yii::$app->user->identity->id) ){
-        array_push($menuItemsLeft,['label' => '我的地盘', 'url' => ['/site/dipan']]);
+        array_push($menuItemsLeft,
+            ['label' => '我的地盘', 'url' => ['/site/dipan']],
+//            ['label' => '我要发布', 'url' => ['/site/hall']]
+            ['label' => '直播', 'url' => "http://116.62.224.108/rtmp-demo/index.html"]
+        );
     }
 
     if (Yii::$app->user->isGuest) {
@@ -87,9 +92,10 @@ AppAsset::register($this);
     </div>
 </div>
 
+
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; 学习网 <?= date('Y') ?></p>
 
         <p class="pull-right"><?//= Yii::powered() ?><!--</p>-->
     </div>
