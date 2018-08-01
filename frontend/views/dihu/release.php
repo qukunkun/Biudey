@@ -44,7 +44,7 @@ $this->title = '地图';
     <?php if(isset($data['province']) && isset($data['city']) && isset($data['village'])): ?>
         <input id="province_v" type="hidden" value="<?=$data['province']?>">
         <input id="city_v" type="hidden" value="<?=$data['city']?>">
-
+        <input id="village_v" type="hidden" value="<?=$data['village']?>">
     <?php endif; ?>
 
     <div class="row">

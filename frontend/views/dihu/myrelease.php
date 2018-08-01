@@ -26,14 +26,13 @@ $this->title = '我的发布';
                 <p><?= $value['address']?></p>
                 <p><?= $value['time']?></p>
                 <p>
-                    <a class="btn btn-default" href="http://www.yiiframework.com/doc/">查看详情 &raquo;</a>
                     <a class="btn btn-default edit" href="/dihu/release?id=<?=$value['id']?>" >编辑</a>
                     <button class="btn btn-default del" onclick="del(<?=$value['id']?>)">删除</button>
                 </p>
             </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <h2>还未发布 <a class="btn btn-default" href="/dihu/release">发布</a></h2>
+            <h2>还未发布 <a class="btn btn-default" href="/dihu/release">去发布</a></h2>
         <?php endif; ?>
     </div>
 

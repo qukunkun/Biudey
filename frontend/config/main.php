@@ -31,6 +31,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logVars' => ['_GET','_POST','_SESSION'], //日志上包括的信息 $_GET, $_POST,$_FILES, $_COOKIE, $_SESSION, $_SERVER
                 ],
             ],
         ],

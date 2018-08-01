@@ -1,16 +1,17 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\ReleaseInfo;
 use Yii;
 use frontend\models\Y;
 use yii\web\Controller;
 
-
-use frontend\models\Address;
-use backend\models\Seeds;
 use frontend\models\UploadForm;
 use yii\web\UploadedFile;
-use frontend\models\ReleaseInfo;
+use frontend\models\Seeds;
+use frontend\models\Address;
+
+use yii\data\Pagination; //分页
 
 /**
  * Dihu controller
@@ -23,17 +24,34 @@ class DihuController extends Controller
     //地图分布页面
     public function actionMap()
     {
-        return $this->render('map');
+        $params = Y::Q()->get();
+        $where = " 1=1";
+        if(isset($params['title'])){
+            $where .= " AND title like '%{$params['title']}%' ";
+        }
+        $releaseInfoModel = new ReleaseInfo();
+
+        //findBysql返回对象
+        $data = $releaseInfoModel::findBySql("select * from release_info where {$where}");
+
+        echo '<pre>'; print_r($data);exit;
+        $pages = new Pagination(['totalCount' =>$data->count(), 'pageSize' => '6']);
+        $res = $data->offset($pages->offset)->limit($pages->limit)->all();exit;
+        return $this->render('map',[
+            'data'=>$res,
+            'pages' => $pages
+        ]);
     }
 
 
+    /**
+     * 省市区三级联动
+     */
     public function actionGetaddress()
     {
         $parentId = Y::Q()->post('parentId');
-//        $sql = "select * from address where parent_id={$parentId}";
-//        $res['data'] = Address::findBySql($sql)->asArray()->all();
-//
-        $res['data'] = Address::find()->where(['parent_id' => $parentId])->asArray()->all();
+        $addressModel = new Address();
+        $res['data'] = $addressModel::find()->where(['parent_id' => $parentId])->asArray()->all();
         return json_encode($res);
     }
 
@@ -70,21 +88,20 @@ class DihuController extends Controller
      */
     public function actionRelease()
     {
-//        $seedsModel = new Seeds();
-//        $sql = "select id, name from seeds";
-//
-//        $data['seeds'] = $seedsModel::findBySql($sql)->asArray()->all();
-        $data['seeds'] = Seeds::find(['id', 'name'])->asArray()->all();
+        $seedsModel = new Seeds();
+        $data['seeds'] = $seedsModel::find(['id', 'name'])->asArray()->all();
         $id = Y::Q()->get('id');
-
+        //修改发布
         if( $id ){
             $data['data'] = ReleaseInfo::find()->where(["id"=>$id])->asArray()->one();
         }
 
-
         return $this->render('release', $data);
     }
 
+    /**
+     * 提交发布
+     */
     public function actionDo_release()
     {
         $ReleaseInfoModel = new ReleaseInfo();
@@ -163,8 +180,11 @@ class DihuController extends Controller
     {
         $userId = Yii::$app->user->identity->id;
 
-        $data['data'] = ReleaseInfo::find()->where(['user_id'=>$userId])->asArray()->orderBy('id DESC')->all();
-        return $this->render('myrelease',$data);
+//        $data['data'] = ReleaseInfo::find()->where(['user_id'=>$userId])->asArray()->orderBy('id DESC')->all();
+//        return $this->render('myrelease',$data);
+        //返回对象 在视图中可以直接渲染
+        $data = ReleaseInfo::find()->where(['user_id'=>$userId])->orderBy('id DESC')->all();
+        return $this->render('myrelease',['data'=>$data]);
     }
 
     /**
