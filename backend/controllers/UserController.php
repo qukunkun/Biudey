@@ -36,7 +36,8 @@ class UserController extends Controller
         if (Yii::$app->request->post()) {
             if($_POST['username']!=''){
                 $username = $_POST['username'];
-                $data = User::find()->where(['username'=>$username]);
+//                $data = User::find()->where(['username'=>$username]);
+                $data = User::find()->where(['like','username',[$username]]);
             }else{
                 $data = User::find();
             }
